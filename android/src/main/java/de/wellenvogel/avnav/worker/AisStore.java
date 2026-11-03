@@ -28,7 +28,7 @@ public class AisStore {
     }
     private HashMap<Integer,JSONObject> aisData=new HashMap<Integer, JSONObject>();
     private static final int HANDLED_MESSAGES[]=new int[]{1,2,3,5,18,19,24,4,21};
-    private static final String MERGE_FIELDS[]=new String[]{"imo_id","callsign","shipname","shiptype","destination","length","beam","draught"};
+    private static final String MERGE_FIELDS[]=new String[]{"imo_id","callsign","shipname","shiptype","destination","length","beam","to_stern","to_port","draught"};
     private static final String LOGPRFX="Avnav.AisStore";
     private static final String AGE_KEY="age";
     private static final String PRIO_KEY="__priority";
@@ -181,6 +181,8 @@ public class AisStore {
                         rt.put("shiptype", m.getShipType());
                         rt.put("length", m.getDimBow() + m.getDimStern());
                         rt.put("beam", m.getDimPort() + m.getDimStarboard());
+                        rt.put("to_stern", m.getDimStern());
+                        rt.put("to_port", m.getDimPort());
                     }
                     if (msgId == 5) {
                         AisMessage5 m5=(AisMessage5)msg;
@@ -211,6 +213,8 @@ public class AisStore {
                     rt.put("aid_type",m.getAtonType());
                     rt.put("length",m.getDimBow()+m.getDimStern());
                     rt.put("beam",m.getDimPort()+m.getDimStarboard());
+                    rt.put("to_stern", m.getDimStern());
+                    rt.put("to_port", m.getDimPort());
                     break;
                 }
 
