@@ -56,8 +56,8 @@ dependencies {
 
 }
 
-File srcBase = new File(project.rootDir, "src" + File.separator + "main")
-File assetsDir = new File(project.rootDir, "assets")
+File srcBase = new File(projectDir, "src" + File.separator + "main")
+File assetsDir = new File(projectDir, "assets")
 if (! project.hasProperty('packageVersion')){
     SimpleDateFormat f=new SimpleDateFormat('yyyyMMdd')
     project.ext.avnavVersion=f.format(new Date())
@@ -193,7 +193,7 @@ android {
     }
 }
 
-File viewerDir = new File(project.rootDir, ".." + File.separator + "viewer"+File.separator+"build")
+File viewerDir = new File(projectDir, ".." + File.separator + "viewer"+File.separator+"build")
 
 task buildViewerRelease(type: org.gradle.api.tasks.GradleBuild) {
     group = taskgroup

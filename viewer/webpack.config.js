@@ -187,7 +187,7 @@ module.exports = (env, argv) => {
 
 
                 {
-                    test: /style\/.*\.less$/,
+                    test: /style[/\\]DeclaredStyles\.less$|style[/\\]avnav_viewer_new\.less$|style[/\\]*.+\.less$/,
                     use: [
                         {
                             loader: MiniCssExtractPlugin.loader
@@ -197,7 +197,7 @@ module.exports = (env, argv) => {
                             options: {
                                 url: true,
                                 modules: {
-                                    auto: /icons.less$|button_text.less$/,
+                                    auto: /icons\.less$|button_text\.less$/,
                                     localIdentName: '[local]',
                                     namedExport: true
                                 }
@@ -213,24 +213,24 @@ module.exports = (env, argv) => {
                 },
 
                 {
-                    test: /images\/.*\.png$|images\/.*\.svg$/,
-                    type: 'asset/resource',
-                    generator: {
-                        filename: 'images/[name][ext]'
-                    }
-                },
-                {
-                    test: /images\/icons-new\/default\/.*\.png$|images\/icons-new\/default\/.*\.svg$/,
+                    test: /images[/\\]icons-new[/\\]default[/\\](?:.*\.png|.*\.svg)$/,
                     type: 'asset/resource',
                     generator: {
                         filename: 'images/default/[name][ext]'
                     }
                 },
                 {
-                    test: /images\/icons-new\/legacy\/.*\.png$|images\/icons-new\/legacy\/.*\.svg$/,
+                    test: /images[/\\]icons-new[/\\]legacy[/\\](?:.*\.png|.*\.svg)$/,
                     type: 'asset/resource',
                     generator: {
                         filename: 'images/legacy/[name][ext]'
+                    }
+                },
+                {
+                    test: /images[/\\](?:.*\.png|.*\.svg)$/,
+                    type: 'asset/resource',
+                    generator: {
+                        filename: 'images/[name][ext]'
                     }
                 }
 
